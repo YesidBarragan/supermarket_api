@@ -31,7 +31,7 @@ async def update_client(client_in_db: ClientInDB):
 
 #Agregar Cliente
 @api.post("/client/new/")
-async def update_client(client_in_db: ClientInDB):
+async def new_client(client_in_db: ClientInDB):
     if client_in_db.cedula not in database_clients:
         database_clients[client_in_db.cedula]=client_in_db
         return {"El cliente fue creado con exito"}
@@ -40,7 +40,7 @@ async def update_client(client_in_db: ClientInDB):
 
 #Eliminar Cliente
 @api.post("/client/delete/")
-async def update_client(client_in_db: ClientSearch):
+async def delete_client(client_in_db: ClientSearch):
     try:
         if database_clients[client_in_db.cedula]:
             database_clients.pop(client_in_db.cedula)
