@@ -15,7 +15,7 @@ async def get_all_clients():
     return database_clients
 
 #Consultar Cliente
-@api.get("/client/search/")
+@api.post("/client/search/")
 async def search_client(client_search: ClientSearch):
     client_in_db = get_client(client_search.cedula)
     if client_in_db == None:
@@ -25,7 +25,7 @@ async def search_client(client_search: ClientSearch):
 
 #Actualizar Cliente
 @api.put("/client/update/")
-async def search_client(client_in_db: ClientInDB):
+async def update_client(client_in_db: ClientInDB):
     database_clients.update({client_in_db.cedula:client_in_db})
     return database_clients[client_in_db.cedula]
 
