@@ -3,11 +3,22 @@ from db.client_db import update_client, get_client, database_clients
 
 from models.client_models import ClientSearch, ClientIn, ClientOut
 
+from fastapi.middleware.cors import CORSMiddleware
+
 import datetime
 
 from fastapi import FastAPI, HTTPException
 
 api = FastAPI()
+
+origins = [
+    "http://localhost.tiangolo.com", "https://localhost.tiangolo.com",
+    "http://localhost", "http://localhost:8080", "https://cajero-app-yesidbarragan.herokuapp.com",
+]
+api.add_middleware(
+    CORSMiddleware, allow_origins=origins,
+    allow_credentials=True, allow_methods=["*"], allow_headers=["*"],
+)
 
 #listar clientes
 @api.get("/clients/")
